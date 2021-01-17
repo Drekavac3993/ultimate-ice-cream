@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import iceCreamImg from "../../assets/img/ultimate-ice-cream.svg";
 
 const Header = () => {
@@ -8,6 +9,11 @@ const Header = () => {
         <img src={iceCreamImg} alt="ice-cream" />
         Ultimate Ice Cream
       </h1>
+      <nav>
+        <NavLink to="/" activeClassName="active" exact>
+          Menu
+        </NavLink>
+      </nav>
     </header>
   );
 };
