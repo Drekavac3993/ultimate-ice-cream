@@ -17,9 +17,17 @@ const getMenu = async () => {
   return sortData;
 };
 
-const getMenuItem = async (id) => {
-  const { data } = await axios.get(`${baseUrl}/${id}`);
+const getMenuItem = async (menuItemId) => {
+  const { data } = await axios.get(`${baseUrl}/${menuItemId}`);
   return data;
 };
 
-export { getMenu, getMenuItem };
+const editMenuItem = async (menuItem) => {
+  const { data } = await axios.put(
+    `${baseUrl}/${menuItem.id.toString()}`,
+    menuItem
+  );
+  return data;
+};
+
+export { getMenu, getMenuItem, editMenuItem };

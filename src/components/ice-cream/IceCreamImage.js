@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const IceCreamImage = ({ iceCreamId }) =>
-  iceCreamId !== null && (
+  iceCreamId != null && (
     <img
       src={`${
         process.env.PUBLIC_URL
@@ -12,7 +12,7 @@ const IceCreamImage = ({ iceCreamId }) =>
   );
 
 IceCreamImage.propTypes = {
-  iceCreamId: PropTypes.number.isRequired,
+  iceCreamId: PropTypes.number,
 };
 
 export default IceCreamImage;
