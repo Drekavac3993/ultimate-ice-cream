@@ -1,5 +1,5 @@
 import React from "react";
-import iceCreamImg from "../assets/img/ultimate-ice-cream.svg";
+import iceCreamImg from "../../assets/img/ultimate-ice-cream.svg";
 
 const Header = () => {
   return (
