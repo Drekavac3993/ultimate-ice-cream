@@ -58,4 +58,4 @@ let menuData = [
   },
 ];
 
-exports.menuData = menuData;
+module.exports = menuData;

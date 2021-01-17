@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const iceCreams = require("./data/iceCreams");
-const menuData = require("./data/menuData");
+let menuData = require("./data/menuData");
 
 const app = express();
 app.use(bodyParser.json());

@@ -30,4 +30,4 @@ const iceCreams = [
   { id: 28, name: "Toxic Sludge" },
 ];
 
-exports.iceCreams = iceCreams;
+module.exports = iceCreams;
