@@ -31,8 +31,8 @@ const Menu = () => {
       <h2 className="main-heading">Rock your taste buds with one of these!</h2>
       {menu.length > 0 ? (
         <ul className="container">
-          {menu.map((item) => (
-            <MenuItem {...item} />
+          {menu.map(({ id, ...props }) => (
+            <MenuItem key={id} {...props} />
           ))}
         </ul>
       ) : (

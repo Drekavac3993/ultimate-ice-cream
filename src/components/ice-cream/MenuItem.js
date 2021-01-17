@@ -1,7 +1,7 @@
 import React from "react";
 
-const MenuItem = ({ id, iceCream, price, description, inStock, quantity }) => (
-  <li key={id.toString()}>
+const MenuItem = ({ iceCream, price, description, inStock, quantity }) => (
+  <li>
     <section className="card">
       <div className="image-container" />
       <div className="text-container">
