@@ -39,8 +39,8 @@ const Menu = () => {
       />
       {menu.length > 0 ? (
         <ul className="container">
-          {menu.map(({ id, ...props }) => (
-            <MenuItem key={id} {...props} />
+          {menu.map((item) => (
+            <MenuItem key={item.id} {...item} />
           ))}
         </ul>
       ) : (
