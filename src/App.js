@@ -1,11 +1,14 @@
 import React from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./styles/ice-cream.scss";
 
 const App = () => {
   return (
-    <header>
-      <h1>Wake the fuck up Samurai, we have a city to burn...</h1>
-    </header>
+    <>
+      <Header />
+      <Footer />
+    </>
   );
 };
 
