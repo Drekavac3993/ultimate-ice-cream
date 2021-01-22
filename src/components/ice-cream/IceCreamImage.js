@@ -7,7 +7,7 @@ const IceCreamImage = ({ iceCreamId }) =>
       src={`${
         process.env.PUBLIC_URL
       }/ice-cream-images/ice-cream-${iceCreamId.toString()}.svg`}
-      alt="ice-cream-image"
+      alt="ice-cream"
     />
   );
 
