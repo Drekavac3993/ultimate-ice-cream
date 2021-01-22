@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import FocusLink from "../structure/FocusLink";
 import iceCreamImg from "../../assets/img/ultimate-ice-cream.svg";
 
 const Header = () => {
@@ -10,9 +10,9 @@ const Header = () => {
         Ultimate Ice Cream
       </h1>
       <nav>
-        <NavLink to="/" activeClassName="active" exact>
+        <FocusLink to="/" activeClassName="active" exact>
           Menu
-        </NavLink>
+        </FocusLink>
       </nav>
     </header>
   );

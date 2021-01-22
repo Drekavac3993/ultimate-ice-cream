@@ -1,13 +1,14 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
 import IceCreamImage from "./IceCreamImage";
+import FocusLink from "../structure/FocusLink";
+import PropTypes from "prop-types";
 
 const MenuItem = ({ id, iceCream, price, description, inStock, quantity }) => {
   const history = useHistory();
 
   const onItemClickHandler = (to) => {
-    history.push(to);
+    history.push(to, { focus: true });
   };
 
   const onLinkClickHandler = (e) => {
@@ -29,12 +30,12 @@ const MenuItem = ({ id, iceCream, price, description, inStock, quantity }) => {
         </div>
         <div className="text-container">
           <h3>
-            <Link
+            <FocusLink
               to={`/menu-items/${id.toString()}`}
               onClick={onLinkClickHandler}
             >
               {iceCream.name}
-            </Link>
+            </FocusLink>
           </h3>
           <div className="content card-content">
             <p className="price">{`$ ${price.toFixed(2)}`}</p>

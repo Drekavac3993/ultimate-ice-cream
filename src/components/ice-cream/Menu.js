@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Helmet from "react-helmet";
 import MenuItem from "./MenuItem";
 import LoaderMessage from "../structure/LoaderMessage";
+import Main from "../structure/Main";
 import { getMenu } from "../../services/iceCreamService";
 
 const Menu = () => {
@@ -25,13 +25,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <main>
-      <Helmet>
-        <title>
-          Rock your taste buds with one of these! | Ultimate Ice Cream
-        </title>
-      </Helmet>
-      <h2 className="main-heading">Rock your taste buds with one of these!</h2>
+    <Main headingText="Rock your taste buds with one of these!">
       <LoaderMessage
         loadingMessage="Loading menu"
         doneMessage="Loading menu complete"
@@ -46,7 +40,7 @@ const Menu = () => {
       ) : (
         !isLoading && <p>Your menu is empty! The sadness!!!</p>
       )}
-    </main>
+    </Main>
   );
 };
 

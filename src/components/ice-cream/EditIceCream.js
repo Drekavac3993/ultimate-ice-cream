@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import Helmet from "react-helmet";
 import { getMenuItem, editMenuItem } from "../../services/iceCreamService";
 import LoaderMessage from "../structure/LoaderMessage";
+import Main from "../structure/Main";
 import IceCreamImage from "./IceCreamImage";
 import useUniqueIds from "../../hooks/useUniquelds";
 import "../../styles/forms-spacer.scss";
@@ -52,7 +52,7 @@ const EditIceCream = () => {
         }
       } catch (err) {
         if (err.response.status === 404 && isMounted.current) {
-          history.replace("/");
+          history.replace("/", { focus: true });
         }
       }
     };
@@ -93,16 +93,12 @@ const EditIceCream = () => {
     };
 
     editMenuItem(submitItem).then(() => {
-      history.push("/");
+      history.push("/", { focus: true });
     });
   };
 
   return (
-    <main>
-      <Helmet>
-        <title>Update this beauty | Ultimate Ice Cream</title>
-      </Helmet>
-      <h2 className="main-heading">Update this beauty</h2>
+    <Main headingText="Update this beauty">
       <LoaderMessage
         loadingMessage="Loading ice cream"
         doneMessage="Ice cream loaded"
@@ -170,7 +166,7 @@ const EditIceCream = () => {
           </div>
         </div>
       )}
-    </main>
+    </Main>
   );
 };
 
