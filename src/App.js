@@ -9,6 +9,7 @@ import {
 import Header from "./components/structure/Header";
 import Footer from "./components/structure/Footer";
 import Menu from "./components/ice-cream/Menu";
+import IceCreams from "./components/ice-cream/IceCreams";
 import EditIceCream from "./components/ice-cream/EditIceCream";
 import "./styles/ice-cream.scss";
 
@@ -21,6 +22,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route path="/" exact component={Menu} />
+        <Route path="/ice-creams/" exact component={IceCreams} />
         <Route path="/menu-items/:menuItemId" exact component={EditIceCream} />
         <Redirect to="/" />
       </Switch>
