@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { getMenuItem, editMenuItem } from "../../services/iceCreamService";
+import {
+  getMenuItem,
+  editMenuItem,
+  deleteMenuItem,
+} from "../../services/iceCreamService";
 import LoaderMessage from "../structure/LoaderMessage";
 import Main from "../structure/Main";
 import ErrorContainer from "./ErrorContainer";
@@ -118,6 +122,12 @@ const EditIceCream = () => {
     }
 
     setMenuItem(newMenuItemData);
+  };
+
+  const onDeleteHandler = () => {
+    deleteMenuItem(menuItemId).then(() => {
+      history.replace("/", { focus: true });
+    });
   };
 
   const onSubmitHandler = (e) => {
@@ -240,6 +250,13 @@ const EditIceCream = () => {
               <div className="button-container">
                 <button className="ok" type="submit">
                   Save
+                </button>
+                <button
+                  className="warning"
+                  type="button"
+                  onClick={onDeleteHandler}
+                >
+                  Delete
                 </button>
               </div>
             </form>

@@ -30,4 +30,9 @@ const editMenuItem = async (menuItem) => {
   return data;
 };
 
-export { getMenu, getMenuItem, editMenuItem };
+const deleteMenuItem = async (menuItemId) => {
+  const { data } = await axios.delete(`${baseUrl}/${menuItemId}`);
+  return data;
+};
+
+export { getMenu, getMenuItem, editMenuItem, deleteMenuItem };
