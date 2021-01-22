@@ -5,6 +5,12 @@ import LoaderMessage from "../structure/LoaderMessage";
 import Main from "../structure/Main";
 import IceCreamImage from "./IceCreamImage";
 import useUniqueIds from "../../hooks/useUniquelds";
+import useValidation from "../../hooks/useValidation";
+import {
+  validateDescription,
+  validateQuantity,
+  validatePrice,
+} from "../../utils/validators";
 import "../../styles/forms-spacer.scss";
 
 const EditIceCream = () => {
@@ -21,6 +27,19 @@ const EditIceCream = () => {
 
   const { menuItemId } = useParams();
   const history = useHistory();
+
+  const descriptionError = useValidation(
+    menuItem.description,
+    validateDescription
+  );
+
+  const quantityError = useValidation(
+    menuItem.quantity,
+    validateQuantity,
+    menuItem.inStock
+  );
+
+  const priceError = useValidation(menuItem.price, validatePrice);
 
   useEffect(() => {
     return () => (isMounted.current = false);
@@ -80,21 +99,25 @@ const EditIceCream = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    console.log("descriptionError", descriptionError);
+    console.log("quantityError", quantityError);
+    console.log("priceError", priceError);
+    if (!descriptionError && !quantityError && !priceError) {
+      const { id, price, inStock, quantity, description, iceCream } = menuItem;
 
-    const { id, price, inStock, quantity, description, iceCream } = menuItem;
+      const submitItem = {
+        id,
+        iceCream: { id: iceCream.id },
+        price: parseFloat(price),
+        inStock,
+        quantity: parseInt(quantity),
+        description,
+      };
 
-    const submitItem = {
-      id,
-      iceCream: { id: iceCream.id },
-      price: parseFloat(price),
-      inStock,
-      quantity: parseInt(quantity),
-      description,
-    };
-
-    editMenuItem(submitItem).then(() => {
-      history.push("/", { focus: true });
-    });
+      editMenuItem(submitItem).then(() => {
+        history.push("/", { focus: true });
+      });
+    }
   };
 
   return (
