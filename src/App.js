@@ -15,6 +15,9 @@ import "./styles/ice-cream.scss";
 const App = () => {
   return (
     <Router>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
       <Header />
       <Switch>
         <Route path="/" exact component={Menu} />
