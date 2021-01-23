@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import MenuItem from "./MenuItem";
 import LoaderMessage from "../structure/LoaderMessage";
 import Main from "../structure/Main";
+import IceCreamCardContainer from "./IceCreamCardContainer";
 import { getMenu } from "../../services/iceCreamService";
 
 const Menu = () => {
@@ -32,11 +33,11 @@ const Menu = () => {
         isLoading={isLoading}
       />
       {menu.length > 0 ? (
-        <ul className="container">
+        <IceCreamCardContainer>
           {menu.map((item) => (
             <MenuItem key={item.id} {...item} />
           ))}
-        </ul>
+        </IceCreamCardContainer>
       ) : (
         !isLoading && <p>Your menu is empty! The sadness!!!</p>
       )}
