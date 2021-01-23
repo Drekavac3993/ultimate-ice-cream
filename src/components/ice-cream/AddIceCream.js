@@ -1,20 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import {
-  getMenuItem,
-  editMenuItem,
-  deleteMenuItem,
-} from "../../services/iceCreamService";
+import { useLocation, useHistory } from "react-router-dom";
+import { getIceCream, addMenuItem } from "../../services/iceCreamService";
 import LoaderMessage from "../structure/LoaderMessage";
 import Main from "../structure/Main";
 import IceCream from "./IceCream";
 
 const EditIceCream = () => {
   const isMounted = useRef(true);
-  const [menuItem, setMenuItem] = useState({});
+  const [iceCream, setIceCream] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { menuItemId } = useParams();
+  const location = useLocation();
   const history = useHistory();
 
   useEffect(() => {
@@ -23,12 +19,12 @@ const EditIceCream = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchIceCream = async (menuItemId) => {
+    const fetchIceCream = async () => {
       try {
-        const item = await getMenuItem(menuItemId);
+        const item = await getIceCream(location.search.split("=")[1]);
 
         if (isMounted.current) {
-          setMenuItem(item);
+          setIceCream(item);
           setIsLoading(false);
         }
       } catch (err) {
@@ -38,40 +34,27 @@ const EditIceCream = () => {
       }
     };
 
-    fetchIceCream(menuItemId);
-  }, [menuItemId, history]);
+    fetchIceCream();
+  }, [location.search, history]);
 
-  const onSubmitHandler = async (updatedItem) => {
+  const onSubmitHandler = async (menuItem) => {
     try {
-      await editMenuItem({ id: menuItem.id, ...updatedItem });
+      await addMenuItem(menuItem);
       history.push("/", { focus: true });
     } catch (err) {
       console.log(err);
     }
   };
 
-  const onDeleteHandler = async () => {
-    try {
-      await deleteMenuItem(menuItemId);
-      history.replace("/", { focus: true });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
-    <Main headingText="Update this beauty">
+    <Main headingText="Add some goodness to the menu">
       <LoaderMessage
         loadingMessage="Loading ice cream"
         doneMessage="Ice cream loaded"
         isLoading={isLoading}
       />
       {!isLoading && (
-        <IceCream
-          {...menuItem}
-          onDelete={onDeleteHandler}
-          onSubmit={onSubmitHandler}
-        />
+        <IceCream iceCream={iceCream} onSubmit={onSubmitHandler} />
       )}
     </Main>
   );

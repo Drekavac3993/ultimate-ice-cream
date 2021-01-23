@@ -33,8 +33,18 @@ const getIceCreams = async () => {
   return sortData;
 };
 
+const getIceCream = async (iceCreamId) => {
+  const { data } = await axios.get(`${baseStockUrl}/${iceCreamId}`);
+  return data;
+};
+
 const getMenuItem = async (menuItemId) => {
   const { data } = await axios.get(`${baseMenuUrl}/${menuItemId}`);
+  return data;
+};
+
+const addMenuItem = async (menuItem) => {
+  const { data } = await axios.post(baseMenuUrl, menuItem);
   return data;
 };
 
@@ -51,4 +61,12 @@ const deleteMenuItem = async (menuItemId) => {
   return data;
 };
 
-export { getMenu, getMenuItem, editMenuItem, deleteMenuItem, getIceCreams };
+export {
+  getMenu,
+  getMenuItem,
+  addMenuItem,
+  editMenuItem,
+  deleteMenuItem,
+  getIceCreams,
+  getIceCream,
+};
